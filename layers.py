@@ -1,5 +1,5 @@
 import numpy as np
-from typing import Dict
+from typing import Dict, Callable
 
 from tensor import Tensor
 
@@ -24,7 +24,8 @@ class Layer:
         raise NotImplementedError
 
 '''
-Linear Layer Implementation
+Linear Layer Implementation:
+y = x @ w + b
 '''
 class Linear(Layer):
     def __init__(self, input_size: int, output_size: int) -> None:
@@ -47,8 +48,14 @@ class Linear(Layer):
         # return gradient with respect to inputs
         return grad @ self.params["w"].T
 
-'''
-Activation Layer Implementation
-'''
 
+# define function for activation layer
+F = Callable[[Tensor], Tensor]
+
+'''
+Activation Layer Implementation:
+Applies a function f element-wise to layer inputs 
+'''
+class Activation(Layer):
+    def __init__(self, f: F, )
 
