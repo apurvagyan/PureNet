@@ -17,8 +17,14 @@ MSE Loss Function
 '''
 class MSE(Loss):
     def loss(self, predicted: Tensor, actual: Tensor) -> float:
-        return np.sum((predicted - actual) ** 2)
+        '''
+        Calculate the Mean Squared Error (MSE) loss.
+        '''
+        return np.mean((predicted.data - actual.data) ** 2)
     
-    def grad(self, predicted: Tensor, actual: Tensor) -> float:
-        return 2 * (predicted - actual)
+    def grad(self, predicted: Tensor, actual: Tensor) -> Tensor:
+        '''
+        Calculate the gradient of the MSE loss.
+        '''
+        return Tensor(2 * (predicted.data - actual.data) / actual.data.size)
 
