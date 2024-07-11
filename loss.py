@@ -45,8 +45,8 @@ class MAE(Loss):
         '''
         Calculate the gradient of the MAE loss.
         '''
-
         grad = np.where(predicted.data > actual.data, 1, -1)
+        
         return Tensor(grad / actual.data.size)
     
 class CrossEntropy(Loss):
@@ -68,6 +68,6 @@ class CrossEntropy(Loss):
         '''
         epsilon = 1e-12
         predicted_data = np.clip(predicted.data, epsilon, 1. - epsilon)
-        
+
         return Tensor(-actual.data / predicted_data)
     
