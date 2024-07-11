@@ -27,4 +27,21 @@ class MSE(Loss):
         Calculate the gradient of the MSE loss.
         '''
         return Tensor(2 * (predicted.data - actual.data) / actual.data.size)
-
+    
+'''
+MAE Loss Function
+'''
+class MAE(Loss):
+    def loss(self, predicted: Tensor, actual: Tensor) -> float:
+        '''
+        Calculate the Mean Absolute Error (MAE) loss.
+        '''
+        return np.mean(np.abs(predicted.data - actual.data))
+    
+    def grad(self, predicted: Tensor, actual: Tensor) -> Tensor:
+        '''
+        Calculate the gradient of the MAE loss.
+        '''
+        grad = np.where(predicted.data > actual.data, 1, -1)
+        return Tensor(grad / actual.data.size)
+    
