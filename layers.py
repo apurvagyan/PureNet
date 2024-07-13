@@ -57,5 +57,7 @@ Activation Layer Implementation:
 Applies a function f element-wise to layer inputs 
 '''
 class Activation(Layer):
-    def __init__(self, f: F, )
-
+    def __init__(self, f: F, f_prime: F) -> None:
+        super().__init__()
+        self.f = f
+        self.f_prime = f_prime
