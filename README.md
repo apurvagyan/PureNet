@@ -1,2 +1,2 @@
-# base-dl-library
-Deep Learning Library for Computational Games
+# PureNet
+Deep learning library written from scratch for computational games
