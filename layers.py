@@ -62,5 +62,16 @@ class Activation(Layer):
         self.f = f
         self.f_prime = f_prime
 
-def tanh(x: Tensor) -> Tensor:
-    return np.tanh(x)
+    def forward(self, inputs: Tensor) -> Tensor:
+        self.inputs = inputs
+        return self.f(inputs)
+    
+    def backprop(self, grad: Tensor) -> Tensor:
+        # y = f(x), x = g(z)
+        # dy/dz = f'(x) * g'(z)
+
+        return self.f_prime(self.inputs) * grad
+
+class Tanh(Activation):
+    def __init__(self):
+        super().__init__(Tensor.tanh, Tensor.tanh_prime)
