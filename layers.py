@@ -61,3 +61,6 @@ class Activation(Layer):
         super().__init__()
         self.f = f
         self.f_prime = f_prime
+
+def tanh(x: Tensor) -> Tensor:
+    return np.tanh(x)
