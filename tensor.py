@@ -108,3 +108,20 @@ class Tensor:
     def min(self, axis=None):
         return Tensor(self.data.min(axis=axis))
     
+    ''' 
+    Tanh: Computes the hyperbolic tangent of each element in the Tensor 
+    '''
+    def tanh(self):
+        exp_x = np.exp(self.data)
+        exp_neg_x = np.exp(-self.data)
+        tanh_x = (exp_x - exp_neg_x) / (exp_x + exp_neg_x)
+        return Tensor(tanh_x)
+    
+    ''' 
+    Tanh Prime: Computes the derivative of the hyperbolic tangent of each element in the Tensor 
+    '''
+    def tanh_prime(self):
+        tanh_x = self.tanh().data
+        tanh_prime_x = 1 - tanh_x ** 2
+        return Tensor(tanh_prime_x)
+    
